@@ -45,4 +45,14 @@ function addListenerForAddressBarDisplay(cell, i, j) {
     let colID = String.fromCharCode(65 + j);
     addressBar.value = `${colID}${rowID}`;
   });
+  cell.addEventListener("keydown", (e) => {
+    //press tab key
+    if (e.keyCode == 9) {
+      let rowID = i + 1;
+      let colID = String.fromCharCode(65 + j + 1);
+      addressBar.value = `${colID}${rowID}`;
+      let [cell, cellProp] = getCellAndCellProp(addressBar.value);
+      cell.click();
+    }
+  });
 }

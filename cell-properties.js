@@ -201,16 +201,25 @@ function addListenerToAttachCellProperties(cell) {
 
     let formulaBar = document.querySelector(".formula-bar");
     formulaBar.value = cellProp.formula;
-    //cell.innerText = cellProp.value;
+    // cell.innerText = cellProp.value;
   });
 }
 
 function getCellAndCellProp(address) {
   let [rid, cid] = decodeRIDCIDFromAddress(address);
+  console.log(rid, cid);
   // Access cell & storage object
   let cell = document.querySelector(`.cell[rid="${rid}"][cid="${cid}"]`);
   let cellProp = sheetDB[rid][cid];
   return [cell, cellProp];
+}
+
+function setCellAndCellProp(address, value, expression) {
+  let [rid, cid] = decodeRIDCIDFromAddress(address);
+  let cell = document.querySelector(`.cell[rid="${rid}"][cid="${cid}"]`);
+  let cellProp = sheetDB[rid][cid];
+  cell.innerHTML = value;
+  cellProp.formula = expression;
 }
 
 function decodeRIDCIDFromAddress(address) {
