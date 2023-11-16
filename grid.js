@@ -56,3 +56,13 @@ function addListenerForAddressBarDisplay(cell, i, j) {
     }
   });
 }
+
+function setCellUIAndCellProp(evaluatedValue, formula, address) {
+  let [cell, cellProp] = getCellAndCellProp(address);
+
+  //UI update
+  cell.innerText = evaluatedValue;
+  // DB update
+  cellProp.value = evaluatedValue;
+  cellProp.formula = formula;
+}
