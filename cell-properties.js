@@ -213,6 +213,16 @@ function getCellAndCellProp(address) {
   return [cell, cellProp];
 }
 
+function setCellUIAndCellProp(evaluatedValue, formula, address) {
+  let [cell, cellProp] = getCellAndCellProp(address);
+
+  //UI update
+  cell.innerText = evaluatedValue;
+  // DB update
+  cellProp.value = evaluatedValue;
+  cellProp.formula = formula;
+}
+
 function decodeRIDCIDFromAddress(address) {
   // address -> "A1"
   let rid = Number(address.slice(1) - 1); // "1" -> 0
